@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ab_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 18:34:52 by acrooks           #+#    #+#             */
-/*   Updated: 2019/06/19 19:16:32 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/07/21 01:44:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 // #include "push_swap.h"
 
-void	op_sa(t_push_swap *temp)
+void	op_sa(t_ps *temp)
 {
 	int swap;
 	
@@ -25,7 +25,7 @@ void	op_sa(t_push_swap *temp)
 	temp->flag ? ft_putstr("sa\n") : 0;
 }
 
-void	op_sb(t_push_swap *temp)
+void	op_sb(t_ps *temp)
 {
 	int swap;
 	
@@ -37,7 +37,7 @@ void	op_sb(t_push_swap *temp)
 	temp->flag ? ft_putstr("sb\n") : 0;
 }
 
-void	op_ss(t_push_swap *temp)
+void	op_ss(t_ps *temp)
 {
 	int swap;
 	

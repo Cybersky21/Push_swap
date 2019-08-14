@@ -6,14 +6,14 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:53:15 by acrooks           #+#    #+#             */
-/*   Updated: 2019/06/19 19:16:22 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/14 13:12:07 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 // #include "push_swap.h"
 
-void	op_pa(t_push_swap *temp)
+void	op_pa(t_ps *temp)
 {
 	int push;
 	int i;
@@ -21,7 +21,7 @@ void	op_pa(t_push_swap *temp)
 	i = 0;
 	if (temp->ib == 0)
 		return ;
-	push = temp->b;
+	push = temp->b[0];
 	i = temp->ia;
 	while (i > 0)
 	{
@@ -40,7 +40,7 @@ void	op_pa(t_push_swap *temp)
 	temp->flag ? ft_putstr("pa\n") : 0;
 }
 
-void	op_pb(t_push_swap *temp)
+void	op_pb(t_ps *temp)
 {
 	int push;
 	int i;
@@ -48,7 +48,7 @@ void	op_pb(t_push_swap *temp)
 	i = 0;
 	if (temp->ia == 0)
 		return ;
-	push = temp->a;
+	push = temp->a[0];
 	i = temp->ib;
 	while (i > 0)
 	{

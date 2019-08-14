@@ -3,61 +3,98 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acrooks <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/08 19:01:00 by acrooks           #+#    #+#             */
-/*   Updated: 2018/12/08 19:01:01 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/14 17:19:47 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		**clean(char **str, int i)
+static	int		kolslov(char const *s, char c)
 {
-	while (i >= 0)
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (s[i] == c)
+		i++;
+	while (s[i])
 	{
-		ft_strdel(&str[i]);
-		i--;
+		while (s[i] && s[i] != c)
+			i++;
+		j++;
+		while (s[i] && s[i] == c)
+			i++;
 	}
-	ft_strdel(str);
+	return (j);
+}
+
+static	int		dlina(char const *s, char c, int a)
+{
+	int i;
+
+	i = 0;
+	while (s[a] && s[a] != c)
+	{
+		a++;
+		i++;
+	}
+	return (i);
+}
+
+static char		**ochistka(char **str, int l)
+{
+	while (l >= 0)
+	{
+		free(str[l]);
+		free(str);
+		l--;
+	}
 	return (NULL);
 }
 
-static char		**words(char const *s, char c)
+static	char	**oksborka(char **str, char const *s, char c)
 {
-	size_t	i;
-	size_t	len;
-	char	**str;
+	int l;
+	int i;
+	int j;
 
-	if (!(str = (char **)malloc(sizeof(char *) * (ft_cntwrds(s, c) + 1))))
-		return (NULL);
+	l = 0;
 	i = 0;
-	while (*s)
+	j = 0;
+	while (s[i])
 	{
-		if (*s != c)
-		{
-			len = 0;
-			while (*s != c && *s)
-			{
-				s++;
-				len++;
-			}
-			if (!(str[i] = ft_strnew(len)))
-				return (clean(str, i));
-			ft_strncpy(str[i++], --s - len + 1, len);
-		}
-		s++;
+		while (s[i] && s[i] == c)
+			i++;
+		if (!(str[l] = (char *)malloc(sizeof(char) * dlina(s, c, i) + 1)))
+			ochistka(str, l);
+		while (s[i] && s[i] != c)
+			str[l][j++] = s[i++];
+		str[l++][j] = '\0';
+		j = 0;
+		while (s[i] && s[i] == c)
+			i++;
 	}
-	str[i] = 0;
+	str[l] = NULL;
 	return (str);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
 	char	**str;
+	int		l;
 
-	if (s == NULL)
+	l = 0;
+	if ((!s) || (!(str = (char **)malloc(sizeof(char*) * (kolslov(s, c) + 1)))))
 		return (NULL);
-	str = words(s, c);
+	if (kolslov(s, c) == 0)
+	{
+		str[l] = NULL;
+		return (str);
+	}
+	str = oksborka(str, s, c);
 	return (str);
 }

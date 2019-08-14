@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ab_rev_rotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:55:43 by acrooks           #+#    #+#             */
-/*   Updated: 2019/06/19 19:16:25 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/07/21 01:44:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 // #include "push_swap.h"
 
-void	op_rra(t_push_swap *temp)
+void	op_rra(t_ps *temp)
 {
 	int push;
 	int i;
@@ -32,7 +32,7 @@ void	op_rra(t_push_swap *temp)
 	temp->flag ? ft_putstr("rra\n") : 0;
 }
 
-void	op_rrb(t_push_swap *temp)
+void	op_rrb(t_ps *temp)
 {
 	int push;
 	int i;
@@ -51,7 +51,7 @@ void	op_rrb(t_push_swap *temp)
 	temp->flag ? ft_putstr("rrb\n") : 0;
 }
 
-void	op_rrr(t_push_swap *temp)
+void	op_rrr(t_ps *temp)
 {
 	int push;
 	int i;

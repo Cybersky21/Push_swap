@@ -6,7 +6,7 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 00:56:35 by acrooks           #+#    #+#             */
-/*   Updated: 2019/06/20 17:49:09 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/14 16:07:53 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ long long			ft_abs(long long n);
 void				ft_putnstr(char *s, size_t n);
 char				*ft_strnchr(const char *s, int c, size_t n);
 char				*ft_itoa_base(unsigned long long int n, int base);
+void				ft_swap(int *a, int *b);
 
 #endif
