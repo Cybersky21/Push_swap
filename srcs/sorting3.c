@@ -6,7 +6,7 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 19:11:17 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/14 13:31:00 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/17 14:49:27 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int		move_a2b(t_ps *temp, int *countb, int *blocks, int notsort)
 	int len;
 
 	len = 0;
-	med = median(temp->a, temp->ia);
+	med = median(temp->a, countb[(*blocks)]);
 	(*blocks)++;
-	pos = check_move_a(temp->a, temp->ia, med) + 1;
+	pos = check_move_a(temp->a, notsort, med) + 1;
 	while (pos)
 	{
 		if (temp->a[0] < med)
@@ -65,11 +65,11 @@ void	move_b2a(t_ps *temp, int *countb, int *blocks, int *len)
 	int med;
 	int	pos;
 
-	med = median(temp->b, temp->ib);
-	pos = check_move_b(temp->b, temp->ib, med) - 1;
+	med = median(temp->b, countb[(*blocks)]);
+	pos = check_move_b(temp->b, countb[(*blocks)] - 1, med) + 1;
 	while (pos)
 	{
-		if (temp->a[0] > med)
+		if (temp->b[0] > med)
 		{
 			op_pa(temp);
 			countb[(*blocks)]--;

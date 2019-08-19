@@ -6,87 +6,88 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 18:40:34 by blanna            #+#    #+#             */
-/*   Updated: 2019/06/20 17:47:00 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/19 18:57:08 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*ft_idisuda(char *s1, char *s2)
+static int	stack_has_n(char **stack, char **line)
 {
-	int		i;
-	int		j;
-	char	*s3;
+	char	*ptr;
 
-	if (!s1 || !s2)
-		return (NULL);
-	s3 = NULL;
-	s3 = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
-	if (!s3)
-		return (NULL);
-	i = -1;
-	j = -1;
-	while (s1[++i])
-		s3[i] = s1[i];
-	while (s2[++j])
-		s3[i + j] = s2[j];
-	s3[i + j] = '\0';
-	free(s1);
-	return (s3);
+	if ((ptr = ft_strchr(*stack, '\n')))
+	{
+		*ptr = '\0';
+		if (!(*line = ft_strdup(*stack)))
+			return (-1);
+		if (!(ptr = ft_strdup(ptr + 1)))
+			return (-1);
+		free(*stack);
+		*stack = ptr;
+		return (1);
+	}
+	return (0);
 }
 
-static int		ft_check_line(char **stack, char **line, int fd, int ret)
+static int	read_line(const int fd, char **stack, char **line, char *buf)
 {
-	char	*temp;
-	int		i;
+	char	*tmp;
+	int		rv;
 
-	i = 0;
-	while (stack[fd][i] != '\n' && stack[fd][i] != '\0')
-		i++;
-	if (stack[fd][i] == '\n')
+	while ((rv = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		*line = ft_strsub(stack[fd], 0, i);
-		temp = ft_strdup(stack[fd] + i + 1);
-		free(stack[fd]);
-		stack[fd] = temp;
-		if (stack[fd][0] == '\0')
-			ft_strdel(&stack[fd]);
-	}
-	else if (stack[fd][i] == '\0')
-	{
-		if (ret == BUFF_SIZE)
-			return (get_next_line(fd, line));
-		*line = ft_strdup(stack[fd]);
-		ft_strdel(&stack[fd]);
-	}
-	return (1);
-}
-
-int				get_next_line(const int fd, char **line)
-{
-	static char	*stack[MAX_FD];
-	char		lay[BUFF_SIZE + 1];
-	char		*temp;
-	int			ret;
-
-	if ((fd < 0 || fd > MAX_FD) || !line)
-		return (-1);
-	while ((ret = read(fd, lay, BUFF_SIZE)) > 0)
-	{
-		lay[ret] = '\0';
-		if (!stack[fd])
-			stack[fd] = ft_strnew(1);
-		temp = ft_idisuda(stack[fd], lay);
-		stack[fd] = temp;
-		if (ft_strchr(lay, '\n'))
+		buf[rv] = '\0';
+		if (*stack)
+		{
+			tmp = ft_strjoin(*stack, buf);
+			free(*stack);
+			*stack = tmp;
+		}
+		else
+			*stack = ft_strdup(buf);
+		if (stack_has_n(stack, line))
 			break ;
 	}
-	if (ret == -1)
-		return (-1);
-	else if (ret == 0 && (!stack[fd] || stack[fd][0] == '\0'))
+	if (rv > 0)
+		return (1);
+	else
+		return (rv);
+}
+
+static int	last(char **line, char **stack, int rv)
+{
+	if (!rv)
 	{
-		*line = ft_strnew(1);
-		return (0);
+		*line = NULL;
+		if (*stack)
+			free(*stack);
+		*stack = NULL;
 	}
-	return (ft_check_line(stack, line, fd, ret));
+	return (rv);
+}
+
+int			get_next_line(const int fd, char **line)
+{
+	static char	*stack[MAX_FD];
+	char		*buf;
+	int			rv;
+
+	if (!line || fd < 0 || fd >= MAX_FD)
+		return (-1);
+	if (stack[fd])
+	{
+		rv = stack_has_n(&stack[fd], line);
+		if (rv)
+			return (rv);
+	}
+	if (!(buf = ft_strnew(BUFF_SIZE)))
+		return (-1);
+	rv = read_line(fd, &stack[fd], line, buf);
+	free(buf);
+	if (rv || stack[fd] == NULL || stack[fd][0] == '\0')
+		return (last(line, &stack[fd], rv));
+	*line = stack[fd];
+	stack[fd] = NULL;
+	return (1);
 }

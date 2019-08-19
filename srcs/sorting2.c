@@ -6,7 +6,7 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 18:42:19 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/14 17:12:40 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/17 13:30:17 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int		check_val(t_ps *temp, int *countb, int *blocks)
 		i++;
 	}
 	check_val2(temp, countb, blocks);
-	return(1);
+	countb[(*blocks)] = 0;
+	return (1);
 }
 
 void	sorting2(t_ps *temp, int *countb, int *blocks)
@@ -82,20 +83,23 @@ void	sorting2(t_ps *temp, int *countb, int *blocks)
 
 void	ft_last_3a(t_ps *t)
 {
-	if (t->a[0] > t->a[2] && t->a[2] > t->a[1])
-		op_ra(t);
-	else if (t->a[1] > t->a[0] && t->a[0] > t->a[2])
-		op_rra(t);
-	else if (t->a[0] > t->a[1] && t->a[0] < t->a[2])
-		op_sa(t);
-	else if (t->a[0] > t->a[1] && t->a[1] > t->a[2])
+	if (t->ia == 3 && ft_check(t->a, t->ia) == 1)
 	{
-		op_ra(t);
-		op_sa(t);
-	}
-	else if (t->a[1] > t->a[0] && t->a[2] > t->a[0])
-	{
-		op_rra(t);
-		op_sa(t);
+		if (t->a[0] > t->a[2] && t->a[2] > t->a[1])
+			op_ra(t);
+		else if (t->a[1] > t->a[0] && t->a[0] > t->a[2])
+			op_rra(t);
+		else if (t->a[0] > t->a[1] && t->a[0] < t->a[2])
+			op_sa(t);
+		else if (t->a[0] > t->a[1] && t->a[1] > t->a[2])
+		{
+			op_ra(t);
+			op_sa(t);
+		}
+		else if (t->a[1] > t->a[0] && t->a[2] > t->a[0])
+		{
+			op_rra(t);
+			op_sa(t);
+		}
 	}
 }

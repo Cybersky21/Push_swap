@@ -6,7 +6,7 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 18:42:53 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/14 17:24:59 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/19 19:49:24 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,34 @@ int		ft_error(int *valid)
 	write(2, "Error\n", 6);
 	(*valid) = 0;
 	exit(1);
+	return (0);
+}
+
+void	ft_clean_args(char **args)
+{
+	size_t i;
+
+	i = 0;
+	while (args && args[i])
+		free(args[i++]);
+	if (args)
+		free(args);
+}
+
+int		ft_check(const int *arr, int k)
+{
+	int i;
+
+	i = 0;
+	if (k == 0 || k == 1)
+		return (0);
+	while (i < k - 1)
+	{
+		if (arr[i] < arr[i + 1])
+			i++;
+		else
+			return (1);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 19:30:14 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/14 16:03:41 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/17 17:15:25 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	sort_top_a2(t_ps *temp)
 {
-	if (temp->a[0] > temp->a[2] && temp->a[2] > temp->a[1])
+	if (temp->a[0] < temp->a[1] && temp->a[0] > temp->a[2])
 	{
-		op_sa(temp);
 		op_ra(temp);
 		op_sa(temp);
 		op_rra(temp);
+		op_sa(temp);
 	}
 	else if (temp->a[0] > temp->a[1] && temp->a[1] > temp->a[2])
 	{
@@ -32,6 +32,8 @@ void	sort_top_a2(t_ps *temp)
 		op_sa(temp);
 		op_rra(temp);
 	}
+	else if (temp->a[0] > temp->a[1] && temp->a[0] < temp->a[2])
+		op_sa(temp);
 }
 
 void	sort_top_a(t_ps *temp)
@@ -44,14 +46,12 @@ void	sort_top_a(t_ps *temp)
 		op_sa(temp);
 		op_rra(temp);
 	}
-	else if (temp->a[0] > temp->a[1] && temp->a[0] < temp->a[2])
-		op_sa(temp);
-	else if (temp->a[0] < temp->a[1] && temp->a[0] > temp->a[2])
+	else if (temp->a[0] > temp->a[2] && temp->a[2] > temp->a[1])
 	{
+		op_sa(temp);
 		op_ra(temp);
 		op_sa(temp);
 		op_rra(temp);
-		op_sa(temp);
 	}
 	else
 		sort_top_a2(temp);
@@ -80,7 +80,7 @@ void	sorting1(t_ps *temp, int *countb, int *blocks, int *sort)
 	int	notsort;
 
 	notsort = temp->ia - (*sort);
-	if (check_args(notsort, temp, 0))
+	if (check_args(notsort, temp))
 	{
 		(*sort) += notsort;
 		return ;

@@ -93,7 +93,7 @@ void	ft_sorting(t_ps *temp, int *countb, int *blocks, int *sort)
 {
 	while (temp->ia > 3)
 	{
-		if (check_args(temp->ia, temp, 0))
+		if (check_args(temp->ia, temp))
 		{
 			(*sort) = temp->ia;
 			return ;

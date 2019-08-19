@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ab_rev_rotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:55:43 by acrooks           #+#    #+#             */
-/*   Updated: 2019/07/21 01:44:25 by marvin           ###   ########.fr       */
+/*   Updated: 2019/08/17 17:20:51 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	op_rra(t_ps *temp)
 	int i;
 
 	i = 0;
-	if (!temp->ia)
+	if (temp->ia < 2)
 		return ;
-	push = temp->a[temp->ia - 1];
 	i = temp->ia - 1;
+	push = temp->a[i];
 	while (i > 0)
 	{
 		temp->a[i] = temp->a[i - 1];
@@ -38,10 +38,10 @@ void	op_rrb(t_ps *temp)
 	int i;
 
 	i = 0;
-	if (!temp->ib)
+	if (temp->ib < 2)
 		return ;
-	push = temp->b[temp->ib - 1];
 	i = temp->ib - 1;
+	push = temp->b[i];
 	while (i > 0)
 	{
 		temp->b[i] = temp->b[i - 1];
@@ -57,19 +57,18 @@ void	op_rrr(t_ps *temp)
 	int i;
 
 	i = 0;
-	if (!temp->ia || !temp->ib)
+	if (temp->ia < 2 || temp->ib < 2)
 		return ;
-	push = temp->a[temp->ia - 1];
 	i = temp->ia - 1;
+	push = temp->a[i];
 	while (i > 0)
 	{
 		temp->a[i] = temp->a[i - 1];
 		i--;
 	}
 	temp->a[0] = push;
-	i = 0;
-	push = temp->b[temp->ib - 1];
 	i = temp->ib - 1;
+	push = temp->b[i];
 	while (i > 0)
 	{
 		temp->b[i] = temp->b[i - 1];

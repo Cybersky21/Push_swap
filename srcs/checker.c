@@ -1,54 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/19 18:41:56 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/19 19:49:20 by acrooks          ###   ########.fr       */
+/*   Created: 2019/08/17 15:20:30 by acrooks           #+#    #+#             */
+/*   Updated: 2019/08/19 19:50:07 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 // #include "push_swap.h"
 
-static int	push_swap(t_ps *temp)
+int		commands(t_ps *temp, char *str)
 {
-	int len;
-	int sort;
-	int *countb;
-	int blocks;
-
-	len = temp->ia;
-	sort = 0;
-	blocks = -1;
-	countb = ft_memalloc(999);
-	ft_sorting(temp, countb, &blocks, &sort);
-	while (sort != len)
-	{
-		sorting2(temp, countb, &blocks);
-		sorting1(temp, countb, &blocks, &sort);
-		if (countb[blocks] == 0)
-			blocks--;
-	}
-	free(countb);
-	return(1);
+	if (ft_strequ(str, "rra"))
+		op_rra(temp);
+	else if (ft_strequ(str, "rrb"))
+		op_rrb(temp);
+	else if (ft_strequ(str, "rrr"))
+		op_rrr(temp);
+	else if (ft_strequ(str, "sa"))
+		op_sa(temp);
+	else if (ft_strequ(str, "sb"))
+		op_sb(temp);
+	else if (ft_strequ(str, "ss"))
+		op_ss(temp);
+	else if (ft_strequ(str, "pa"))
+		op_pa(temp);
+	else if (ft_strequ(str, "pb"))
+		op_pb(temp);
+	else if (ft_strequ(str, "ra"))
+		op_ra(temp);
+	else if (ft_strequ(str, "rb"))
+		op_rb(temp);
+	else if (ft_strequ(str, "rr"))
+		op_rr(temp);
+	else
+		return (0);
+	return (1);
 }
 
-static int	ps_one_arg(char **argv)
+int		ft_one_arg(char **argv)
 {
 	t_ps	*temp;
 	int		i;
 	char	**args;
 	int		len;
 	int		valid;
-
+	
 	i = -1;
 	valid = 1;
 	args = ft_strsplit(argv[1], ' ');
 	len = strcnt((const char **)args);
 	temp = ft_fill(len);
+	temp->flag = 0;
 	while (++i < len)
 	{
 		temp->a[i] = atoi_ps(args[i], &valid);
@@ -56,22 +63,24 @@ static int	ps_one_arg(char **argv)
 		if (!valid)
 			return (freetemp(temp));
 	}
-	if (!check_args(i, temp))
-		push_swap(temp);
+	if (ft_com_check(temp))
+		ft_ok_ko(temp);
 	ft_clean_args(args);
 	freetemp(temp);
 	return (1);
 }
 
-static int	ps_args(int argc, char **argv)
+int		ft_args(int argc, char **argv)
 {
+	t_ps	*temp;
 	int		i;
 	int		valid;
-	t_ps	*temp;
-	
+	char	*str;
+
 	i = -1;
 	valid = 1;
 	temp = ft_fill(argc - 1);
+	temp->flag = 0;
 	while (++i < argc - 1)
 	{
 		temp->a[i] = atoi_ps(argv[i + 1], &valid);
@@ -79,27 +88,21 @@ static int	ps_args(int argc, char **argv)
 		if (!valid)
 			return (freetemp(temp));
 	}
-	if (!check_args(i, temp))
-		push_swap(temp);
+	if (ft_com_check(temp))
+		ft_ok_ko(temp);
 	freetemp(temp);
 	return (1);
 }
 
-int			main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	int 	i;
+	int	i;
 
 	if (argc == 1)
-		return (ft_error(&i));
+		return (0);
 	if (argc == 2)
-	{
-		if (!ps_one_arg(argv))
-			return (0);
-	}
+		ft_one_arg(argv);
 	else
-	{
-		if (!ps_args(argc, argv))
-			return (0);	
-	}
-	return (1);
+		ft_args(argc, argv);
+	return (0);
 }

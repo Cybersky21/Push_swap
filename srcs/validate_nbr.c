@@ -13,31 +13,18 @@ size_t	strcnt(const char **str)
 	return (i);
 }
 
-int		check_args(int len, t_ps *temp, int checker)
+int		check_args(int len, t_ps *temp)
 {
 	int i;
 
 	i = 0;
-	if (checker == 1)
-	{
-		if (temp->ia != len)
-		{
-			write(1, "KO\n", 3);
-			return (0);
-		}
-	}
+
 	while (i < len - 1)
 	{
 		if (temp->a[i] > temp->a[i + 1])
-		{
-			if (checker == 1)
-				write (1, "KO\n", 3);
 			return (0);
-		}
 		i++;
 	}
-	if (checker == 1)
-		write(1, "OK\n", 3);
 	return (1);
 }
 
@@ -96,7 +83,7 @@ int		atoi_ps(const char *str, int *valid)
 		sign = -1;
 	if (*str == '-' || *str == '+')
 		str++;
-	while (*str)
+	while (*str <= '9' && *str >= '0')
 	{
 		value = value * 10 + (*str - '0');
 		str++;
