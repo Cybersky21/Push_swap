@@ -6,7 +6,7 @@
 #    By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/19 19:02:20 by acrooks           #+#    #+#              #
-#    Updated: 2019/08/19 19:29:27 by acrooks          ###   ########.fr        #
+#    Updated: 2019/08/21 14:26:51 by acrooks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,18 @@ OBJ2 = checker.o checker1.o ab_push.o ab_rev_rotate.o ab_rotate.o ab_swap.o \
 output_free.o validate_nbr.o
 
 FLAGS = -Wall -Wextra -Werror
-LIBRF = ./libft/libftprintf.a
+LIBFT = ./libft/libftprintf.a
 
 all: $(NAME1) $(NAME2)
 
 $(NAME1):
 		@make re -C libft/
 		@gcc -c -g $(SRC1) srcs/push_swap.c
-		@gcc $(LIBRF) $(FLAGS) $(OBJ1) -o $(NAME1)
+		@gcc $(LIBFT) $(FLAGS) $(OBJ1) -o $(NAME1)
 
 $(NAME2):
 		@gcc -c -g srcs/checker.c srcs/checker1.c
-		@gcc $(LIBRF) $(FLAGS) $(OBJ2) -o $(NAME2)
+		@gcc $(LIBFT) $(FLAGS) $(OBJ2) -o $(NAME2)
 
 clean:
 		make clean -C libft

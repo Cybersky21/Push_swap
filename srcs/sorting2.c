@@ -6,12 +6,11 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 18:42:19 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/17 13:30:17 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/20 16:24:30 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+#include "push_swap.h"
 
 void	ft_last_3b(t_ps *temp, int *countb, int *blocks)
 {
@@ -77,7 +76,7 @@ void	sorting2(t_ps *temp, int *countb, int *blocks)
 	{
 		move_b2a(temp, countb, blocks, &len);
 		if ((*blocks) != 0)
-			sort_rev_b(temp, len); // &
+			sort_rev_b(temp, len);
 	}
 }
 

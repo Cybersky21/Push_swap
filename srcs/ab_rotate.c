@@ -6,12 +6,11 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 21:54:59 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/17 17:21:25 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/20 16:18:49 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+#include "push_swap.h"
 
 void	op_ra(t_ps *temp)
 {

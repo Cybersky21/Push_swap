@@ -6,12 +6,11 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 18:41:56 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/19 19:49:20 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/20 16:21:58 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+#include "push_swap.h"
 
 static int	push_swap(t_ps *temp)
 {
@@ -33,7 +32,7 @@ static int	push_swap(t_ps *temp)
 			blocks--;
 	}
 	free(countb);
-	return(1);
+	return (1);
 }
 
 static int	ps_one_arg(char **argv)
@@ -68,7 +67,7 @@ static int	ps_args(int argc, char **argv)
 	int		i;
 	int		valid;
 	t_ps	*temp;
-	
+
 	i = -1;
 	valid = 1;
 	temp = ft_fill(argc - 1);
@@ -87,7 +86,7 @@ static int	ps_args(int argc, char **argv)
 
 int			main(int argc, char **argv)
 {
-	int 	i;
+	int i;
 
 	if (argc == 1)
 		return (ft_error(&i));
@@ -99,7 +98,7 @@ int			main(int argc, char **argv)
 	else
 	{
 		if (!ps_args(argc, argv))
-			return (0);	
+			return (0);
 	}
 	return (1);
 }

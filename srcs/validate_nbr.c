@@ -1,10 +1,21 @@
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_nbr.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/20 16:25:28 by acrooks           #+#    #+#             */
+/*   Updated: 2019/08/20 16:25:43 by acrooks          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 
 size_t	strcnt(const char **str)
 {
 	size_t i;
-	
+
 	i = 0;
 	if (!str)
 		return (0);
@@ -18,7 +29,6 @@ int		check_args(int len, t_ps *temp)
 	int i;
 
 	i = 0;
-
 	while (i < len - 1)
 	{
 		if (temp->a[i] > temp->a[i + 1])

@@ -6,17 +6,16 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 19:21:03 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/19 19:27:52 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/21 14:28:05 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+#include "push_swap.h"
 
 int		ft_com_check(t_ps *temp)
 {
 	char	*str;
-	
+
 	while (get_next_line(0, &str))
 	{
 		if (!commands(temp, str))

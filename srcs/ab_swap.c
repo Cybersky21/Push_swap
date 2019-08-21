@@ -6,17 +6,16 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 18:34:52 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/17 17:22:04 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/20 16:19:48 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+#include "push_swap.h"
 
 void	op_sa(t_ps *temp)
 {
 	int swap;
-	
+
 	swap = 0;
 	if (temp->ia < 2)
 		return ;
@@ -32,7 +31,7 @@ void	op_sa(t_ps *temp)
 void	op_sb(t_ps *temp)
 {
 	int swap;
-	
+
 	swap = 0;
 	if (temp->ib < 2)
 		return ;
@@ -48,7 +47,7 @@ void	op_sb(t_ps *temp)
 void	op_ss(t_ps *temp)
 {
 	int swap;
-	
+
 	swap = 0;
 	if (temp->ia < 2 || temp->ib < 2)
 		return ;

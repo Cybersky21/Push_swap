@@ -6,12 +6,11 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 15:20:30 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/19 19:50:07 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/21 14:17:20 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+#include "push_swap.h"
 
 int		commands(t_ps *temp, char *str)
 {
@@ -49,7 +48,7 @@ int		ft_one_arg(char **argv)
 	char	**args;
 	int		len;
 	int		valid;
-	
+
 	i = -1;
 	valid = 1;
 	args = ft_strsplit(argv[1], ' ');

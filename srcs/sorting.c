@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/13 18:42:14 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/13 18:42:14 by acrooks          ###   ########.fr       */
+/*   Created: 2019/08/20 16:23:38 by acrooks           #+#    #+#             */
+/*   Updated: 2019/08/20 16:23:58 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 int		median(int *arr, int len)
 {
@@ -37,7 +37,7 @@ int		median(int *arr, int len)
 	return (med);
 }
 
-int			check_move_a(int *arr, int len, int med)
+int		check_move_a(int *arr, int len, int med)
 {
 	len--;
 	while (len >= 0)
@@ -49,7 +49,7 @@ int			check_move_a(int *arr, int len, int med)
 	return (len);
 }
 
-void		move_a(t_ps *temp, int *countb, int *blocks)
+void	move_a(t_ps *temp, int *countb, int *blocks)
 {
 	int med;
 	int	pos;

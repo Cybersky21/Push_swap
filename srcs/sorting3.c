@@ -6,12 +6,11 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 19:11:17 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/17 14:49:27 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/20 16:24:41 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+#include "push_swap.h"
 
 int		move_a2b(t_ps *temp, int *countb, int *blocks, int notsort)
 {

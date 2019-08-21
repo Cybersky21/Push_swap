@@ -6,12 +6,11 @@
 /*   By: acrooks <acrooks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 18:42:53 by acrooks           #+#    #+#             */
-/*   Updated: 2019/08/19 19:49:24 by acrooks          ###   ########.fr       */
+/*   Updated: 2019/08/20 16:21:06 by acrooks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
-// #include "push_swap.h"
+#include "push_swap.h"
 
 int		freetemp(t_ps *temp)
 {
@@ -64,7 +63,7 @@ t_ps	*ft_fill(int argc)
 {
 	t_ps	*temp;
 	int		i;
-	
+
 	i = -1;
 	if (!(temp = (t_ps *)malloc(sizeof(t_ps))))
 		exit(1);
